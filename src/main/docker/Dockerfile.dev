@@ -49,18 +49,18 @@ RUN passwd -d openttd
 
 USER openttd
 WORKDIR /home/openttd
-RUN wget https://cdn.openttd.org/openttd-releases/14.0/openttd-14.0-linux-generic-amd64.tar.xz
-RUN wget https://cdn.openttd.org/opengfx-releases/7.1/opengfx-7.1-all.zip
+RUN wget https://cdn.openttd.org/openttd-releases/${OPENTTD_VERSION}/openttd-${OPENTTD_VERSION}-linux-generic-amd64.tar.xz
+RUN wget https://cdn.openttd.org/opengfx-releases/${OPENGFX_VERSION}/opengfx-${OPENGFX_VERSION}-all.zip
 
-RUN tar -xf openttd-14.0-linux-generic-amd64.tar.xz
+RUN tar -xf openttd-${OPENTTD_VERSION}-linux-generic-amd64.tar.xz
 
-RUN mkdir openttd-14
-RUN cp -a openttd-14.0-linux-generic-amd64/. openttd-14
+RUN mkdir openttd-${OPENTTD_VERSION}
+RUN cp -a openttd-${OPENTTD_VERSION}-linux-generic-amd64/. openttd-${OPENTTD_VERSION}
 
-RUN unzip opengfx-7.1-all.zip
-RUN tar -xf opengfx-7.1.tar -C openttd-14/baseset/
+RUN unzip opengfx-${OPENGFX_VERSION}-all.zip
+RUN tar -xf opengfx-${OPENGFX_VERSION}.tar -C openttd-${OPENTTD_VERSION}/baseset/
 
-RUN rm -rf opengfx-*.tar opengfx-*.zip openttd-14.0*
+RUN rm -rf opengfx-*.tar opengfx-*.zip openttd-${OPENTTD_VERSION}*.zip
     ## Set entrypoint script to right user
 RUN chmod +x /openttd.sh
 
